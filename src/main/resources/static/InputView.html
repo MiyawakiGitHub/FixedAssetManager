@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Upload xlsx File</title>
+</head>
+<body>
+	ファイル登録画面
+	<br>
+	<form id="form" action="http://localhost:8080/file/upload"
+		method="post" enctype="multipart/form-data">
+		<input type="file" name="file" id="file"> <input type="submit"
+			value="Upload">
+	</form>
+
+	<script>
+        function uploadFile() {
+            const form = document.getElementById('form');
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Javaシステムからのレスポンスを処理する
+                console.log(data);
+            })
+            .catch(error => console.error(error));
+        }
+    </script>
+</body>
+</html>
